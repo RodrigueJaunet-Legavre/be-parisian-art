@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Emmanuelle Legavre</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="galerie.html">GALERIE</a>
+      <a href="apropos.html">À PROPOS</a>
+      <a href="contact.html" class="active">CONTACT</a>
+      <a href="videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right"></div>
+  </nav>
+
+  <main class="page-main">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="fade-up">
+          <span class="section__label">Contact</span>
+          <h2>Entrons<br>en contact.</h2>
+          <br>
+          <p style="font-size:0.93rem;color:var(--gris-fonce);line-height:2;margin-bottom:40px">
+            Pour l'acquisition d'une œuvre, une demande d'exposition ou simplement pour échanger — écrivez-moi.
+          </p>
+          <div class="contact__meta">
+            <span>Atelier · 14 rue de la Roquette, Paris 11<sup>e</sup></span>
+            <span>contact@emmanuellegavre.fr</span>
+            <a href="https://instagram.com/emmanuelle.legavre" target="_blank" rel="noopener">Instagram · @emmanuelle.legavre</a>
+          </div>
+        </div>
+
+        <form class="fade-up fade-up--d1" id="contactForm" novalidate>
+          <div class="form__group">
+            <label class="form__label" for="fNom">Nom</label>
+            <input class="form__input" type="text" id="fNom" placeholder="Votre nom" />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="fEmail">E-mail</label>
+            <input class="form__input" type="email" id="fEmail" placeholder="votre@email.com" />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="fMessage">Message</label>
+            <textarea class="form__textarea" id="fMessage" placeholder="Votre message…"></textarea>
+          </div>
+          <button type="submit" class="form__submit">Envoyer</button>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://instagram.com/emmanuelle.legavre" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form__submit');
+      btn.textContent = 'Message envoyé';
+      btn.style.opacity = '0.5';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Envoyer';
+        btn.style.opacity = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 4000);
+    });
+  </script>
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+</body>
+</html>

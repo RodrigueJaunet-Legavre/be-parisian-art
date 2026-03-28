@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Emmanuelle Legavre</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="galerie.html">GALERIE</a>
+      <a href="apropos.html" class="active">À PROPOS</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right"></div>
+  </nav>
+
+  <main class="page-main">
+    <section class="apropos-section">
+
+      <div class="apropos-header fade-up">
+        <h1 class="apropos-title">À Propos</h1>
+        <p class="apropos-subtitle">Emmanuelle Legavre</p>
+      </div>
+
+      <div class="apropos-bloc bloc-1 fade-up">
+        <div class="apropos-img-main">
+          <img src="images/a-propos.jpg" alt="Emmanuelle Legavre">
+        </div>
+        <div class="apropos-text">
+          <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne. Libre, elle avance sans complexe. Son crédo : s'affranchir des limites. Créatrice prolifique, elle capte, ressent et crée sans cesse… en quête du beau.</p>
+        </div>
+      </div>
+
+      <div class="apropos-bloc bloc-2 fade-up">
+        <div class="apropos-text">
+          <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales, tableaux et bas-reliefs. Elle s'appuie sur sa propre marque de mode, BE PARISIAN, et redéfinit les contours de son travail de créatrice. Il n'y a plus de frontière : de Directrice artistique, elle enfile son costume d'artiste plasticienne.</p>
+          <p>Son terreau réside dans les archives, les inspirations et les matières oubliées ou imparfaites de BE PARISIAN, elle en fait son médium. Soie, coton, papier, carton, toile, cuir, plumes… elle plonge avec avidité dans ces rebuts, les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
+        </div>
+        <div class="apropos-img-secondary">
+          <img src="images/a-propos1.jpg" alt="Emmanuelle Legavre atelier">
+        </div>
+      </div>
+
+      <div class="apropos-contact fade-up">
+        <a href="mailto:n_jaunet@hotmail.com">n_jaunet@hotmail.com</a>
+        <span>+33 (0)6 31 97 92 89</span>
+        <a href="contact.html" class="contact-cta">Prendre contact →</a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://instagram.com/emmanuelle.legavre" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+</body>
+</html>
