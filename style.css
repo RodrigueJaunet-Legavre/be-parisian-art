@@ -268,61 +268,39 @@ h2 {
 .galerie__item:hover .galerie__item__img img {
   transform: scale(1.03);
 }
-.galerie__grid {
-  counter-reset: ambient-counter;
-}
 .galerie__item--full-width {
   grid-column: 1 / -1;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
   align-items: center;
+  gap: 3rem;
   padding: 2rem 0;
-  position: relative;
 }
-.galerie__item--full-width::before {
-  content: counter(ambient-counter);
-  counter-increment: ambient-counter;
-  position: absolute;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20rem;
-  color: rgba(0,0,0,0.03);
-  pointer-events: none;
-  user-select: none;
-  line-height: 1;
-  z-index: 0;
-}
-.galerie__item--full-width:nth-of-type(odd) {
-  justify-content: flex-start;
-  padding-left: 8rem;
-}
-.galerie__item--full-width:nth-of-type(even) {
-  justify-content: flex-end;
-  padding-right: 8rem;
+.galerie__item--full-width::before,
+.galerie__item--full-width::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: rgba(0,0,0,0.12);
+  width: 100%;
 }
 .galerie__item--full-width .galerie__item__img {
-  width: 35%;
+  grid-column: 2;
+  width: 100%;
   height: auto;
   background: none;
-  position: relative;
-  z-index: 1;
 }
 .galerie__item--full-width .galerie__item__img img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 16/9;
   object-fit: cover;
   display: block;
-  box-shadow: 6px 6px 30px rgba(0,0,0,0.12);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-.galerie__item--full-width:nth-of-type(odd) .galerie__item__img img {
-  transform: rotate(-1.5deg);
-}
-.galerie__item--full-width:nth-of-type(even) .galerie__item__img img {
-  transform: rotate(1.5deg);
+  transform: none;
+  box-shadow: none;
+  transition: opacity 0.4s ease;
 }
 .galerie__item--full-width:hover .galerie__item__img img {
-  transform: rotate(0deg) scale(1.02);
-  box-shadow: 10px 10px 40px rgba(0,0,0,0.18);
+  opacity: 0.88;
 }
 .galerie__item__caption {
   margin-top: 16px;
@@ -849,29 +827,26 @@ h2 {
   }
   .galerie__item--full-width {
     grid-column: 1;
+    grid-template-columns: 1fr;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     padding: 0;
-    justify-content: center;
+    gap: 0;
   }
-  .galerie__item--full-width:nth-of-type(odd),
-  .galerie__item--full-width:nth-of-type(even) {
-    justify-content: center;
-    padding-left: 0;
-    padding-right: 0;
+  .galerie__item--full-width::before,
+  .galerie__item--full-width::after {
+    display: none;
   }
   .galerie__item--full-width .galerie__item__img {
+    grid-column: 1;
     width: 100%;
-    height: 65vw;
+    height: auto;
   }
   .galerie__item--full-width .galerie__item__img img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 4/3;
+    height: auto;
     object-fit: cover;
-    object-position: center;
-    display: block;
-    transform: none !important;
-    box-shadow: none;
   }
   .gallery-section {
     padding: 5rem 0;
