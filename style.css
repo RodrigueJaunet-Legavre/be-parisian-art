@@ -249,9 +249,12 @@ h2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8rem 5rem;
+  align-items: end;
 }
 .galerie__item {
-  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   overflow: hidden;
 }
 .galerie__item__img {
