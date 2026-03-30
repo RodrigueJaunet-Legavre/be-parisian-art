@@ -273,6 +273,9 @@ h2 {
   display: block;
   transition: none;
 }
+.galerie__item.is-ambient > .galerie__item__img {
+  align-self: center;
+}
 .galerie__item--full-width {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
