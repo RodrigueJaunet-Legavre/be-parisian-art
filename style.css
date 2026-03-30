@@ -273,7 +273,8 @@ h2 {
   display: block;
   transition: none;
 }
-.galerie__item.is-ambient > .galerie__item__img {
+.galerie__item.is-ambient > .galerie__item__img,
+.galerie__item.has-ambient > .galerie__item__img {
   align-self: center;
 }
 .galerie__item.is-ambient.small > .galerie__item__img {
@@ -291,8 +292,10 @@ h2 {
 }
 .galerie__item.same-size > .galerie__item__img img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: 550px;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
 }
 .galerie__item--full-width {
   display: grid;
