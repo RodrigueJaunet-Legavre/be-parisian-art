@@ -19,7 +19,11 @@
     <div class="nav-center">
       <a href="index.html">BE PARISIAN ART</a>
     </div>
-    <div class="nav-right"></div>
+    <div class="nav-right">
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <main>
@@ -143,6 +147,27 @@
       navLeft.addEventListener('mouseleave', () => {
         const active = navLeft.querySelector('a.active');
         if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const burger  = document.querySelector('.nav-burger');
+      const navLeft = document.querySelector('.nav-left');
+      if (!burger || !navLeft) return;
+      burger.addEventListener('click', () => {
+        const open = navLeft.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLeft.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLeft.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
       });
     })();
   </script>
