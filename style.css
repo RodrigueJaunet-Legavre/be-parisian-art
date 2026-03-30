@@ -784,9 +784,12 @@ h2 {
 
   /* Galerie */
   .galerie__grid {
-    grid-template-columns: 1fr;
-    gap: 5rem;
+    grid-template-columns: 1fr !important;
+    gap: 4rem;
     padding: 0 1.5rem;
+  }
+  .galerie__item:nth-child(5n) {
+    grid-column: 1;
   }
   .gallery-section {
     padding: 5rem 0;
