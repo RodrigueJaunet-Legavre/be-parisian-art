@@ -277,12 +277,22 @@ h2 {
   align-self: center;
 }
 .galerie__item.is-ambient.small > .galerie__item__img {
-  padding: 0 3rem;
+  padding: 0;
+  background: none;
 }
 .galerie__item.is-ambient.small > .galerie__item__img img {
-  width: 70%;
-  margin: 0 auto;
-  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  object-fit: contain;
+}
+.galerie__item.same-size > .galerie__item__img img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 .galerie__item--full-width {
   display: grid;
