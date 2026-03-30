@@ -276,6 +276,14 @@ h2 {
 .galerie__item.is-ambient > .galerie__item__img {
   align-self: center;
 }
+.galerie__item.is-ambient.small > .galerie__item__img {
+  padding: 0 3rem;
+}
+.galerie__item.is-ambient.small > .galerie__item__img img {
+  width: 70%;
+  margin: 0 auto;
+  display: block;
+}
 .galerie__item--full-width {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
