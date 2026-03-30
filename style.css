@@ -308,6 +308,7 @@ h2 {
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
+  min-height: 4rem;
 }
 .galerie__item__titre {
   font-family: var(--font-titre);
