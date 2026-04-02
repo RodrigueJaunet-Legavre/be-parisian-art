@@ -28,7 +28,14 @@
   <main class="oeuvre-page">
 
     <section class="oeuvre-hero">
-      <img src="../images/crypto-silk1.jpg" alt="CRYPTO SILK #1" class="oeuvre-main-img" />
+      <div class="zoom-container" id="zoomContainer">
+        <img src="../images/crypto-silk1.jpg" alt="CRYPTO SILK #1" class="oeuvre-main-img" id="zoomImg">
+        <div class="zoom-overlay" id="zoomOverlay">
+          <button class="zoom-close" id="zoomClose">✕</button>
+          <img src="../images/crypto-silk1.jpg" class="zoom-full" id="zoomFull">
+        </div>
+      </div>
+      <p class="zoom-hint">Cliquez pour zoomer</p>
     </section>
 
     <section class="oeuvre-info">
@@ -128,6 +135,39 @@
         });
       });
     })();
+  </script>
+  <script>
+    const zoomImg = document.getElementById('zoomImg');
+    const zoomOverlay = document.getElementById('zoomOverlay');
+    const zoomClose = document.getElementById('zoomClose');
+    const zoomFull = document.getElementById('zoomFull');
+
+    zoomImg.addEventListener('click', () => {
+      zoomOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    zoomOverlay.addEventListener('click', (e) => {
+      if (e.target === zoomOverlay || e.target === zoomClose) {
+        zoomOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        zoomFull.classList.remove('zoomed');
+      }
+    });
+
+    zoomFull.addEventListener('click', (e) => {
+      e.stopPropagation();
+      zoomFull.classList.toggle('zoomed');
+      zoomFull.style.cursor = zoomFull.classList.contains('zoomed') ? 'zoom-out' : 'zoom-in';
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        zoomOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        zoomFull.classList.remove('zoomed');
+      }
+    });
   </script>
 </body>
 </html>

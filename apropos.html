@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>À propos — Emmanuelle Legavre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -25,46 +28,92 @@
     </div>
   </nav>
 
-  <main class="page-main">
-    <section class="apropos-section">
+  <main class="apropos-main">
 
-      <div class="apropos-header fade-up">
-        <p class="apropos-title">À Propos</p>
-        <h1 class="apropos-name">Emmanuelle<br>Legavre</h1>
+    <!-- HERO — Nom en très grand qui prend tout l'écran -->
+    <section class="ap-hero">
+      <div class="ap-hero-bg">
+        <img src="images/a-propos.jpg" alt="" class="ap-hero-img" id="parallaxImg">
       </div>
-
-      <div class="apropos-composition">
-
-        <div class="apropos-img-large">
-          <img src="images/a-propos.jpg" alt="Emmanuelle Legavre" />
-        </div>
-
-        <div class="apropos-content">
-          <div class="apropos-text first">
-            <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne. Libre, elle avance sans complexe. Son crédo : s'affranchir des limites.</p>
-          </div>
-
-          <div class="apropos-img-small">
-            <img src="images/a-propos1.jpg" alt="Atelier" />
-          </div>
-
-          <div class="apropos-text second">
-            <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales. Elle s'appuie sur sa propre marque BE PARISIAN et redéfinit les contours de son travail de créatrice. Il n'y a plus de frontière.</p>
-            <p>Son terreau réside dans les archives, les matières oubliées ou imparfaites de BE PARISIAN. Soie, coton, papier, carton, toile, cuir, plumes… elle les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
-          </div>
-        </div>
-
+      <div class="ap-hero-content">
+        <p class="ap-label">Artiste · Paris</p>
+        <h1 class="ap-hero-name">
+          <span class="line" data-text="Emmanuelle">Emmanuelle</span>
+          <span class="line" data-text="Legavre">Legavre</span>
+        </h1>
+        <p class="ap-scroll-hint">↓ Découvrir</p>
       </div>
-
-      <div class="apropos-contact fade-up">
-        <a href="mailto:elegavre@hotmail.com">elegavre@hotmail.com</a>
-        <span>+33 (0)6 31 97 92 89</span>
-        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener">@beparisianart</a>
-        <address>118 avenue Mozart, Paris</address>
-        <a href="contact.html" class="contact-cta">Prendre contact →</a>
-      </div>
-
     </section>
+
+    <!-- SECTION 1 — Phrase d'accroche géante -->
+    <section class="ap-statement">
+      <div class="ap-statement-inner">
+        <p class="ap-big-text" id="bigText">
+          <span>S'affranchir</span>
+          <span>des limites.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2 — Texte + image sticky -->
+    <section class="ap-about">
+      <div class="ap-about-sticky">
+        <img src="images/a-propos.jpg" alt="Emmanuelle Legavre" class="ap-sticky-img">
+      </div>
+      <div class="ap-about-scroll">
+        <div class="ap-text-block">
+          <span class="ap-number">01</span>
+          <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">02</span>
+          <p>Libre, elle avance sans complexe. Son crédo : s'affranchir des limites. Créatrice prolifique, elle capte, ressent et crée sans cesse… en quête du beau.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">03</span>
+          <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales, tableaux et bas-reliefs. Il n'y a plus de frontière : de Directrice artistique, elle enfile son costume d'artiste plasticienne.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">04</span>
+          <p>Son terreau réside dans les archives et les matières oubliées de BE PARISIAN. Soie, coton, papier, carton, toile, cuir, plumes… elle plonge avec avidité dans ces rebuts, les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — Grande image pleine largeur avec texte superposé -->
+    <section class="ap-fullimage">
+      <img src="images/a-propos1.jpg" alt="" class="ap-full-img" id="parallaxImg2">
+      <div class="ap-fullimage-text">
+        <p>« En quête<br>du beau »</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4 — Contact interactif -->
+    <section class="ap-contact">
+      <h2 class="ap-contact-title">Contact</h2>
+      <div class="ap-contact-grid">
+        <a href="mailto:elegavre@hotmail.com" class="ap-contact-item">
+          <span class="ap-contact-label">Email</span>
+          <span class="ap-contact-value">elegavre@hotmail.com</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener" class="ap-contact-item">
+          <span class="ap-contact-label">Instagram</span>
+          <span class="ap-contact-value">@beparisianart</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+        <div class="ap-contact-item">
+          <span class="ap-contact-label">Atelier</span>
+          <span class="ap-contact-value">118 avenue Mozart, Paris</span>
+        </div>
+        <a href="contact.html" class="ap-contact-item ap-contact-cta">
+          <span class="ap-contact-label">Demande</span>
+          <span class="ap-contact-value">Prendre contact</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -87,56 +136,6 @@
         setTimeout(() => { window.location.href = href; }, 250);
       });
     });
-  </script>
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  </script>
-  <script>
-    /* ── Titre : révélation au chargement ── */
-    window.addEventListener('load', () => {
-      const name = document.querySelector('.apropos-name');
-      if (!name) return;
-      name.style.opacity = '0';
-      name.style.transform = 'translateY(30px)';
-      setTimeout(() => {
-        name.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
-        name.style.opacity = '1';
-        name.style.transform = 'translateY(0)';
-      }, 150);
-    });
-
-    /* ── Texte mot par mot ── */
-    document.querySelectorAll('.apropos-text p').forEach(p => {
-      const words = p.textContent.split(' ');
-      p.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(' ');
-    });
-
-    const wordObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.querySelectorAll('.word').forEach((word, i) => {
-            setTimeout(() => { word.classList.add('visible'); }, i * 40);
-          });
-          wordObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.apropos-text p').forEach(p => wordObserver.observe(p));
-
-    /* ── Parallax au scroll sur les images ── */
-    const aproposImages = document.querySelectorAll('.apropos-img-large img, .apropos-img-small img');
-
-    window.addEventListener('scroll', () => {
-      aproposImages.forEach(img => {
-        const rect = img.closest('div').getBoundingClientRect();
-        const progress = ((rect.top + rect.height / 2) - window.innerHeight / 2) / window.innerHeight;
-        img.style.transform = `translateY(${progress * 40}px)`;
-      });
-    }, { passive: true });
   </script>
   <script>
     (function () {
@@ -190,6 +189,62 @@
         });
       });
     })();
+  </script>
+  <script>
+    // Parallax sur les deux images hero
+    function parallax() {
+      const scroll = window.scrollY;
+      const img1 = document.getElementById('parallaxImg');
+      const img2 = document.getElementById('parallaxImg2');
+
+      if (img1) img1.style.transform = `translateY(${scroll * 0.3}px)`;
+      if (img2) {
+        const section = img2.closest('.ap-fullimage');
+        const offset = section ? section.getBoundingClientRect().top : 0;
+        img2.style.transform = `translateY(${offset * -0.2}px)`;
+      }
+    }
+
+    window.addEventListener('scroll', parallax, { passive: true });
+
+    // Apparition des blocs texte au scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.ap-text-block').forEach(el => observer.observe(el));
+
+    // Texte géant — animation au scroll
+    const bigText = document.getElementById('bigText');
+    if (bigText) {
+      const spans = bigText.querySelectorAll('span');
+      spans.forEach(span => {
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(30px)';
+        span.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      });
+
+      const bigObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          spans.forEach((span, i) => {
+            setTimeout(() => {
+              span.style.opacity = '1';
+              span.style.transform = 'translateY(0)';
+            }, i * 200);
+          });
+          bigObserver.unobserve(bigText);
+        }
+      }, { threshold: 0.3 });
+
+      bigObserver.observe(bigText);
+    }
   </script>
 </body>
 </html>
