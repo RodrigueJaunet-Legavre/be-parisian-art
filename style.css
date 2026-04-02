@@ -376,7 +376,7 @@ h2 {
 }
 .apropos-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(5rem, 10vw, 9rem);
+  font-size: clamp(4rem, 8vw, 7.5rem);
   line-height: 0.9;
   letter-spacing: 0.02em;
   color: #0D0D0D;
@@ -424,8 +424,8 @@ h2 {
   gap: 2rem;
 }
 .apropos-text p {
-  font-size: 1.2rem;
-  line-height: 2;
+  font-size: 1.45rem;
+  line-height: 2.1;
   color: #222;
 }
 .apropos-text.second {
@@ -457,6 +457,13 @@ h2 {
   text-transform: uppercase;
   color: #888;
   text-decoration: none;
+}
+.apropos-contact address {
+  font-style: normal;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
 }
 .contact-cta {
   color: #0D0D0D !important;
