@@ -29,27 +29,31 @@
     <section class="apropos-section">
 
       <div class="apropos-header fade-up">
-        <h1 class="apropos-title">À Propos</h1>
-        <p class="apropos-subtitle">Emmanuelle Legavre</p>
+        <p class="apropos-title">À Propos</p>
+        <h1 class="apropos-name">Emmanuelle<br>Legavre</h1>
       </div>
 
-      <div class="apropos-bloc bloc-1 fade-up">
-        <div class="apropos-img-main">
-          <img src="images/a-propos.jpg" alt="Emmanuelle Legavre">
-        </div>
-        <div class="apropos-text">
-          <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne. Libre, elle avance sans complexe. Son crédo : s'affranchir des limites. Créatrice prolifique, elle capte, ressent et crée sans cesse… en quête du beau.</p>
-        </div>
-      </div>
+      <div class="apropos-composition">
 
-      <div class="apropos-bloc bloc-2 fade-up">
-        <div class="apropos-text">
-          <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales, tableaux et bas-reliefs. Elle s'appuie sur sa propre marque de mode, BE PARISIAN, et redéfinit les contours de son travail de créatrice. Il n'y a plus de frontière : de Directrice artistique, elle enfile son costume d'artiste plasticienne.</p>
-          <p>Son terreau réside dans les archives, les inspirations et les matières oubliées ou imparfaites de BE PARISIAN, elle en fait son médium. Soie, coton, papier, carton, toile, cuir, plumes… elle plonge avec avidité dans ces rebuts, les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
+        <div class="apropos-img-large">
+          <img src="images/a-propos.jpg" alt="Emmanuelle Legavre" />
         </div>
-        <div class="apropos-img-secondary">
-          <img src="images/a-propos1.jpg" alt="Emmanuelle Legavre atelier">
+
+        <div class="apropos-content">
+          <div class="apropos-text first">
+            <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne. Libre, elle avance sans complexe. Son crédo : s'affranchir des limites.</p>
+          </div>
+
+          <div class="apropos-img-small">
+            <img src="images/a-propos1.jpg" alt="Atelier" />
+          </div>
+
+          <div class="apropos-text second">
+            <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales. Elle s'appuie sur sa propre marque BE PARISIAN et redéfinit les contours de son travail de créatrice. Il n'y a plus de frontière.</p>
+            <p>Son terreau réside dans les archives, les matières oubliées ou imparfaites de BE PARISIAN. Soie, coton, papier, carton, toile, cuir, plumes… elle les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
+          </div>
         </div>
+
       </div>
 
       <div class="apropos-contact fade-up">
@@ -89,17 +93,17 @@
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
   <script>
-    /* ── Titre : révélation 3D au chargement ── */
+    /* ── Titre : révélation au chargement ── */
     window.addEventListener('load', () => {
-      const title = document.querySelector('.apropos-title');
-      if (!title) return;
-      title.style.opacity = '0';
-      title.style.transform = 'perspective(800px) rotateX(25deg) translateY(40px)';
+      const name = document.querySelector('.apropos-name');
+      if (!name) return;
+      name.style.opacity = '0';
+      name.style.transform = 'translateY(30px)';
       setTimeout(() => {
-        title.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        title.style.opacity = '1';
-        title.style.transform = 'perspective(800px) rotateX(0deg) translateY(0)';
-      }, 200);
+        name.style.transition = 'opacity 0.9s ease, transform 0.9s ease';
+        name.style.opacity = '1';
+        name.style.transform = 'translateY(0)';
+      }, 150);
     });
 
     /* ── Texte mot par mot ── */
@@ -121,44 +125,16 @@
 
     document.querySelectorAll('.apropos-text p').forEach(p => wordObserver.observe(p));
 
-    /* ── Ligne séparatrice animée ── */
-    const blocObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.apropos-bloc').forEach(bloc => blocObserver.observe(bloc));
-
-    /* ── Parallax 3D sur les images ── */
-    const aproposImages = document.querySelectorAll('.apropos-img-main img, .apropos-img-secondary img');
+    /* ── Parallax au scroll sur les images ── */
+    const aproposImages = document.querySelectorAll('.apropos-img-large img, .apropos-img-small img');
 
     window.addEventListener('scroll', () => {
       aproposImages.forEach(img => {
         const rect = img.closest('div').getBoundingClientRect();
         const progress = ((rect.top + rect.height / 2) - window.innerHeight / 2) / window.innerHeight;
-        if (!img._hovering) {
-          img.style.transform = `translateY(${progress * 40}px)`;
-        }
+        img.style.transform = `translateY(${progress * 40}px)`;
       });
     }, { passive: true });
-
-    aproposImages.forEach(img => {
-      const wrapper = img.closest('div');
-      img._hovering = false;
-
-      wrapper.addEventListener('mouseenter', () => { img._hovering = true; });
-      wrapper.addEventListener('mouseleave', () => {
-        img._hovering = false;
-        img.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
-      });
-      wrapper.addEventListener('mousemove', (e) => {
-        const rect = wrapper.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        img.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.03)`;
-      });
-    });
   </script>
   <script>
     (function () {
