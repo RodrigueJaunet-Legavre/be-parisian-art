@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GOLD MOON #2 — Emmanuelle Legavre</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="../galerie.html" class="active">GALERIE</a>
+      <a href="../apropos.html">À PROPOS</a>
+      <a href="../contact.html">CONTACT</a>
+      <a href="../videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="../index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="oeuvre-page">
+
+    <section class="oeuvre-hero">
+      <img src="../images/gold-moon.jpg" alt="GOLD MOON #2" class="oeuvre-main-img" />
+    </section>
+
+    <section class="oeuvre-info">
+      <h1 class="oeuvre-title">GOLD MOON #2</h1>
+      <p class="oeuvre-year">2025</p>
+      <p class="oeuvre-medium">Silk, acrylic, gold leaves on canvas</p>
+      <p class="oeuvre-dimensions">100 × 100 cm — 39 × 39 inch</p>
+      <p class="oeuvre-status">Unique</p>
+    </section>
+
+    <section class="oeuvre-staging">
+      <h2>L'œuvre en situation</h2>
+      <div class="staging-grid">
+        <img src="../images/bps3.jpg" alt="GOLD MOON #2 en situation" />
+      </div>
+    </section>
+
+    <a href="../galerie.html" class="back-link">← Retour à la galerie</a>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://instagram.com/emmanuelle.legavre" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const burger  = document.querySelector('.nav-burger');
+      const navLeft = document.querySelector('.nav-left');
+      if (!burger || !navLeft) return;
+      burger.addEventListener('click', () => {
+        const open = navLeft.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLeft.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLeft.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

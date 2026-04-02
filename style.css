@@ -229,11 +229,11 @@ body.is-leaving {
 .section__header { margin-bottom: 72px; }
 .section__label {
   display: block;
-  font-size: 1rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(4rem, 8vw, 7rem);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--gris-texte);
-  margin-bottom: 14px;
+  margin-bottom: 5rem;
 }
 h2 {
   font-family: var(--font-titre);
@@ -366,12 +366,12 @@ h2 {
 }
 .apropos-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 6rem;
+  font-size: clamp(5rem, 10vw, 9rem);
   line-height: 1;
 }
 .apropos-subtitle {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
+  font-size: 1rem;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #888;
   margin-top: 1rem;
@@ -382,6 +382,21 @@ h2 {
   gap: 6rem;
   align-items: center;
   margin-bottom: 10rem;
+  position: relative;
+  padding-bottom: 6rem;
+}
+.apropos-bloc::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(0,0,0,0.15);
+  transition: width 1.2s ease;
+}
+.apropos-bloc.in-view::after {
+  width: 100%;
 }
 .bloc-2 {
   direction: rtl;
@@ -389,11 +404,19 @@ h2 {
 .bloc-2 > * {
   direction: ltr;
 }
+.apropos-img-main,
+.apropos-img-secondary {
+  overflow: hidden;
+  perspective: 1000px;
+}
 .apropos-img-main img,
 .apropos-img-secondary img {
   width: 100%;
   height: auto;
   display: block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center center;
+  will-change: transform;
 }
 .apropos-img-secondary {
   max-width: 480px;
@@ -404,9 +427,19 @@ h2 {
   gap: 2rem;
 }
 .apropos-text p {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: #333;
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #222;
+}
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.word.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .apropos-contact {
   display: flex;
@@ -1001,4 +1034,89 @@ h2 {
   .gallery-row { grid-template-columns: 1fr; }
   .gallery-item--full img,
   .gallery-item--half img { height: 60vw; }
+}
+
+/* ── OEUVRE PAGE ────────────────────────────────── */
+.oeuvre-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 4rem;
+}
+.oeuvre-hero {
+  margin-bottom: 4rem;
+}
+.oeuvre-main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 85vh;
+  object-fit: contain;
+}
+.oeuvre-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 4rem;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 6rem;
+}
+.oeuvre-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  grid-column: 1 / -1;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.oeuvre-year {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #888;
+}
+.oeuvre-medium,
+.oeuvre-dimensions,
+.oeuvre-status {
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #555;
+}
+.oeuvre-staging {
+  margin-bottom: 6rem;
+}
+.oeuvre-staging h2 {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 2rem;
+}
+.staging-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+.staging-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.back-link {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  text-decoration: none;
+  border-bottom: 1px solid #0D0D0D;
+  padding-bottom: 0.2rem;
+  margin-top: 4rem;
+  transition: opacity 0.3s;
+}
+.back-link:hover { opacity: 0.5; }
+.galerie__link {
+  text-decoration: none;
+  color: inherit;
+  display: contents;
 }

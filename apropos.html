@@ -89,6 +89,78 @@
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   </script>
   <script>
+    /* ── Titre : révélation 3D au chargement ── */
+    window.addEventListener('load', () => {
+      const title = document.querySelector('.apropos-title');
+      if (!title) return;
+      title.style.opacity = '0';
+      title.style.transform = 'perspective(800px) rotateX(25deg) translateY(40px)';
+      setTimeout(() => {
+        title.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        title.style.opacity = '1';
+        title.style.transform = 'perspective(800px) rotateX(0deg) translateY(0)';
+      }, 200);
+    });
+
+    /* ── Texte mot par mot ── */
+    document.querySelectorAll('.apropos-text p').forEach(p => {
+      const words = p.textContent.split(' ');
+      p.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(' ');
+    });
+
+    const wordObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.word').forEach((word, i) => {
+            setTimeout(() => { word.classList.add('visible'); }, i * 40);
+          });
+          wordObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.apropos-text p').forEach(p => wordObserver.observe(p));
+
+    /* ── Ligne séparatrice animée ── */
+    const blocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.apropos-bloc').forEach(bloc => blocObserver.observe(bloc));
+
+    /* ── Parallax 3D sur les images ── */
+    const aproposImages = document.querySelectorAll('.apropos-img-main img, .apropos-img-secondary img');
+
+    window.addEventListener('scroll', () => {
+      aproposImages.forEach(img => {
+        const rect = img.closest('div').getBoundingClientRect();
+        const progress = ((rect.top + rect.height / 2) - window.innerHeight / 2) / window.innerHeight;
+        if (!img._hovering) {
+          img.style.transform = `translateY(${progress * 40}px)`;
+        }
+      });
+    }, { passive: true });
+
+    aproposImages.forEach(img => {
+      const wrapper = img.closest('div');
+      img._hovering = false;
+
+      wrapper.addEventListener('mouseenter', () => { img._hovering = true; });
+      wrapper.addEventListener('mouseleave', () => {
+        img._hovering = false;
+        img.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+      });
+      wrapper.addEventListener('mousemove', (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        img.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.03)`;
+      });
+    });
+  </script>
+  <script>
     (function () {
       const navLeft = document.querySelector('.nav-left');
       const links = document.querySelectorAll('.nav-left a');
