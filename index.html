@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emmanuelle Legavre — Peintre</title>
+  <meta name="description" content="Emmanuelle Legavre, peintre parisienne. Œuvres originales à l'huile sur toile." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="galerie.html">GALERIE</a>
+      <a href="apropos.html">À PROPOS</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="hero">
+      <img class="hero-image" src="images/miseenscene/a-propos1.jpg" alt="Œuvre de Emmanuelle Legavre" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-slogan">L'Art de<br>la Mode</h1>
+        <a href="galerie.html" class="hero__cta">Voir les œuvres →</a>
+      </div>
+    </section>
+
+
+    <section class="carousel-section">
+      <div class="carousel-track">
+        <!-- rempli dynamiquement par JavaScript -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const carouselImages = [
+        'images/accueil/bpaccueil.jpg',
+        'images/accueil/bpaccueil1.jpg',
+        'images/accueil/bpaccueil2.jpg',
+        'images/accueil/bpaccueil3.jpg',
+        'images/accueil/bpaccueil4.jpg',
+        'images/accueil/bpaccueil5.jpg',
+        'images/accueil/bpaccueil6.jpg',
+        'images/accueil/bpaccueil7.jpg',
+        'images/accueil/bpaccueil8.jpeg',
+        'images/accueil/bpaccueil9.jpg',
+        'images/accueil/bpaccueil10.jpg',
+        'images/accueil/bpaccueil11.jpg',
+        'images/accueil/bpaccueil12.jpg',
+        'images/accueil/bpaccueil13.jpg',
+        'images/accueil/bpaccueil14.jpeg',
+        'images/accueil/bpaccueil15.jpg',
+        'images/accueil/bpaccueil16.jpg',
+        'images/accueil/bpaccueil17.jpg',
+        'images/accueil/bpaccueil19.jpeg',
+      ];
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      const track = document.querySelector('.carousel-track');
+      if (track) {
+        const shuffled = shuffle(carouselImages);
+        const doubled = [...shuffled, ...shuffled];
+        track.innerHTML = doubled.map(src =>
+          `<div class="carousel-item"><img src="${src}" alt="" loading="lazy"></div>`
+        ).join('');
+      }
+    })();
+  </script>
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.gallery-item').forEach(el => observer.observe(el));
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const burger  = document.querySelector('.nav-burger');
+      const navLeft = document.querySelector('.nav-left');
+      if (!burger || !navLeft) return;
+      burger.addEventListener('click', () => {
+        const open = navLeft.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLeft.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLeft.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

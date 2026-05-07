@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JEWEL TOTEM #2 — Emmanuelle Legavre</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="../galerie.html" class="active">GALERIE</a>
+      <a href="../apropos.html">À PROPOS</a>
+      <a href="../contact.html">CONTACT</a>
+      <a href="../videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="../index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="oeuvre-page">
+
+        <section class="oeuvre-hero">
+      <div class="zoom-zone" id="zoomZone">
+        <img src="../images/tableau/totem2.jpeg" alt="JEWEL TOTEM #2" id="zoomImg">
+        <div class="zoom-lens" id="zoomLens"></div>
+      </div>
+      <p class="zoom-hint">Survolez pour zoomer</p>
+    </section>
+
+    <section class="oeuvre-info">
+      <h1 class="oeuvre-title">JEWEL TOTEM #2</h1>
+      <p class="oeuvre-year">2024</p>
+      <p class="oeuvre-medium">Silk, acrylic, aluminium foil, leather, cardboard tube</p>
+      <p class="oeuvre-dimensions">168 × 90 cm</p>
+      <p class="oeuvre-status">Unique</p>
+    </section>
+
+    <a href="../galerie.html" class="back-link">← Retour à la galerie</a>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const burger  = document.querySelector('.nav-burger');
+      const navLeft = document.querySelector('.nav-left');
+      if (!burger || !navLeft) return;
+      burger.addEventListener('click', () => {
+        const open = navLeft.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLeft.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLeft.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const zoomZone = document.getElementById('zoomZone');
+      const zoomImg  = document.getElementById('zoomImg');
+      const zoomLens = document.getElementById('zoomLens');
+
+      if (!zoomZone || !zoomImg || !zoomLens) return;
+      const ZOOM = 1.8;
+
+      zoomZone.addEventListener('mousemove', (e) => {
+        const rect = zoomZone.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
+
+        zoomLens.style.opacity = '1';
+        zoomLens.style.left = x + 'px';
+        zoomLens.style.top  = y + 'px';
+
+        const bgX = (x / rect.width)  * 100;
+        const bgY = (y / rect.height) * 100;
+
+        zoomLens.style.backgroundImage    = `url(${zoomImg.src})`;
+        zoomLens.style.backgroundSize     = `${rect.width * ZOOM}px ${rect.height * ZOOM}px`;
+        zoomLens.style.backgroundPosition = `${bgX}% ${bgY}%`;
+      });
+
+      zoomZone.addEventListener('mouseleave', () => {
+        zoomLens.style.opacity = '0';
+      });
+
+      zoomZone.addEventListener('mouseenter', () => {
+        zoomLens.style.opacity = '1';
+      });
+    })();
+  </script>
+</body>
+</html>

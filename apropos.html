@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Emmanuelle Legavre</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-left">
+      <a href="galerie.html">GALERIE</a>
+      <a href="apropos.html" class="active">À PROPOS</a>
+      <a href="contact.html">CONTACT</a>
+      <a href="videos.html">VIDÉOS</a>
+    </div>
+    <div class="nav-center">
+      <a href="index.html">BE PARISIAN ART</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="apropos-main">
+
+    <!-- HERO — Nom en très grand qui prend tout l'écran -->
+    <section class="ap-hero">
+      <div class="ap-hero-bg">
+        <img src="images/miseenscene/a-propos.jpg" alt="" class="ap-hero-img" id="parallaxImg">
+      </div>
+      <div class="ap-hero-content">
+        <p class="ap-label">Artiste · Paris</p>
+        <h1 class="ap-hero-name">
+          <span class="line" data-text="Emmanuelle">Emmanuelle</span>
+          <span class="line" data-text="Legavre">Legavre</span>
+        </h1>
+        <p class="ap-scroll-hint">↓ Découvrir</p>
+      </div>
+    </section>
+
+    <!-- SECTION 1 — Phrase d'accroche géante -->
+    <section class="ap-statement">
+      <div class="ap-statement-inner">
+        <p class="ap-big-text" id="bigText">
+          <span>S'affranchir</span>
+          <span>des limites.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 2 — Texte + image sticky -->
+    <section class="ap-about">
+      <div class="ap-about-sticky">
+        <img src="images/miseenscene/a-propos.jpg" alt="Emmanuelle Legavre" class="ap-sticky-img">
+      </div>
+      <div class="ap-about-scroll">
+        <div class="ap-text-block">
+          <span class="ap-number">01</span>
+          <p>Emmanuelle Legavre, fondatrice de la marque BE PARISIAN, est une artiste pluridisciplinaire accomplie : Architecte d'intérieur, designer de mobilier, Directrice artistique et plasticienne.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">02</span>
+          <p>Libre, elle avance sans complexe. Son crédo : s'affranchir des limites. Créatrice prolifique, elle capte, ressent et crée sans cesse… en quête du beau.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">03</span>
+          <p>Pour cette collection, l'artiste réalise des sculptures et des œuvres contemporaines murales, tableaux et bas-reliefs. Il n'y a plus de frontière : de Directrice artistique, elle enfile son costume d'artiste plasticienne.</p>
+        </div>
+        <div class="ap-text-block">
+          <span class="ap-number">04</span>
+          <p>Son terreau réside dans les archives et les matières oubliées de BE PARISIAN. Soie, coton, papier, carton, toile, cuir, plumes… elle plonge avec avidité dans ces rebuts, les transforme et leur apporte une nouvelle noblesse, un nouveau beau.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3 — Grande image pleine largeur avec texte superposé -->
+    <section class="ap-fullimage">
+      <img src="images/miseenscene/a-propos1.jpg" alt="" class="ap-full-img" id="parallaxImg2">
+      <div class="ap-fullimage-text">
+        <p>« En quête<br>du beau »</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4 — Contact interactif -->
+    <section class="ap-contact">
+      <h2 class="ap-contact-title">Contact</h2>
+      <div class="ap-contact-grid">
+        <a href="mailto:elegavre@hotmail.com" class="ap-contact-item">
+          <span class="ap-contact-label">Email</span>
+          <span class="ap-contact-value">elegavre@hotmail.com</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener" class="ap-contact-item">
+          <span class="ap-contact-label">Instagram</span>
+          <span class="ap-contact-value">@beparisianart</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+        <div class="ap-contact-item">
+          <span class="ap-contact-label">Atelier</span>
+          <span class="ap-contact-value">118 avenue Mozart, Paris</span>
+        </div>
+        <a href="contact.html" class="ap-contact-item ap-contact-cta">
+          <span class="ap-contact-label">Demande</span>
+          <span class="ap-contact-value">Prendre contact</span>
+          <span class="ap-contact-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <span>© 2025 Emmanuelle Legavre</span>
+        <span>Paris, France</span>
+        <a href="https://www.instagram.com/beparisianart" target="_blank" rel="noopener">Instagram →</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') || href.startsWith('http')) return;
+        e.preventDefault();
+        document.body.classList.add('is-leaving');
+        setTimeout(() => { window.location.href = href; }, 250);
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      const navLeft = document.querySelector('.nav-left');
+      const links = document.querySelectorAll('.nav-left a');
+      const indicator = document.createElement('div');
+      indicator.className = 'nav-indicator';
+      navLeft.appendChild(indicator);
+
+      function moveIndicator(el) {
+        const navRect = navLeft.getBoundingClientRect();
+        const linkRect = el.getBoundingClientRect();
+        indicator.style.left  = (linkRect.left - navRect.left) + 'px';
+        indicator.style.width = linkRect.width + 'px';
+      }
+
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      links.forEach(link => {
+        if (link.getAttribute('href').includes(currentPage)) {
+          link.classList.add('active');
+          setTimeout(() => moveIndicator(link), 50);
+        }
+      });
+
+      links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+      });
+      navLeft.addEventListener('mouseleave', () => {
+        const active = navLeft.querySelector('a.active');
+        if (active) moveIndicator(active);
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      const burger  = document.querySelector('.nav-burger');
+      const navLeft = document.querySelector('.nav-left');
+      if (!burger || !navLeft) return;
+      burger.addEventListener('click', () => {
+        const open = navLeft.classList.toggle('open');
+        burger.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      navLeft.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLeft.classList.remove('open');
+          burger.classList.remove('open');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+  </script>
+  <script>
+    // Parallax sur les deux images hero
+    function parallax() {
+      const scroll = window.scrollY;
+      const img1 = document.getElementById('parallaxImg');
+      const img2 = document.getElementById('parallaxImg2');
+
+      if (img1) img1.style.transform = `translateY(${scroll * 0.3}px)`;
+      if (img2) {
+        const section = img2.closest('.ap-fullimage');
+        const offset = section ? section.getBoundingClientRect().top : 0;
+        img2.style.transform = `translateY(${offset * -0.2}px)`;
+      }
+    }
+
+    window.addEventListener('scroll', parallax, { passive: true });
+
+    // Apparition des blocs texte au scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, i * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.ap-text-block').forEach(el => observer.observe(el));
+
+    // Texte géant — animation au scroll
+    const bigText = document.getElementById('bigText');
+    if (bigText) {
+      const spans = bigText.querySelectorAll('span');
+      spans.forEach(span => {
+        span.style.opacity = '0';
+        span.style.transform = 'translateY(30px)';
+        span.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+      });
+
+      const bigObserver = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          spans.forEach((span, i) => {
+            setTimeout(() => {
+              span.style.opacity = '1';
+              span.style.transform = 'translateY(0)';
+            }, i * 200);
+          });
+          bigObserver.unobserve(bigText);
+        }
+      }, { threshold: 0.3 });
+
+      bigObserver.observe(bigText);
+    }
+  </script>
+</body>
+</html>
