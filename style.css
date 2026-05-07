@@ -1431,6 +1431,35 @@ h2 {
   margin-bottom: 0.4rem;
 }
 
+.caption-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0D0D0D;
+  margin-bottom: 0.4rem;
+}
+
+.caption-medium {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 0.3rem;
+  font-weight: 400;
+}
+
+.caption-dims {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: #bbb;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
 @media (max-width: 768px) {
   .gallery-stack {
     padding: 0 1.5rem;

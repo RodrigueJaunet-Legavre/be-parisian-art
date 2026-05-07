@@ -145,6 +145,35 @@
           </div>
         </div>
 
+        <div class="video-divider">
+          <svg viewBox="0 0 1200 20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,10 Q300,2 600,10 T1200,10" stroke="#0D0D0D" stroke-width="0.8" fill="none" stroke-linecap="round" opacity="0.15" />
+          </svg>
+        </div>
+
+        <div class="video-item">
+          <div class="video-player">
+            <div class="video-wrapper">
+              <video playsinline preload="metadata">
+                <source src="videos/reel5.mp4" type="video/mp4">
+                <track kind="subtitles" src="videos/subtitles5.vtt" srclang="fr" label="Français">
+              </video>
+              <button class="play-btn" aria-label="Lecture">
+                <svg class="icon-play" viewBox="0 0 24 24"><polygon points="6,4 20,12 6,20" fill="#0D0D0D"/></svg>
+                <svg class="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="5" y="4" width="4" height="16" fill="#0D0D0D"/><rect x="15" y="4" width="4" height="16" fill="#0D0D0D"/></svg>
+              </button>
+            </div>
+            <div class="subtitles-panel" data-title="Brut Totem">
+              <div class="video-info">
+                <span class="video-number">05</span>
+                <h3 class="video-title">Brut Totem</h3>
+                <p class="video-desc">L'art à l'état brut — soie, cuir et terre mêlés.</p>
+              </div>
+              <p class="subtitle-text"></p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </section>
