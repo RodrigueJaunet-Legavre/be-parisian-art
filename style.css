@@ -1373,6 +1373,7 @@ h2 {
   grid-template-columns: repeat(2, 1fr);
   gap: 5rem 3rem;
   padding: 0 3rem;
+  align-items: end;
 }
 
 .gallery-item {
@@ -1398,6 +1399,22 @@ h2 {
   object-fit: contain;
   object-position: bottom;
   display: block;
+}
+
+.gallery-item.pair-aligned {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.gallery-item.pair-aligned .gallery-item-img {
+  height: auto;
+}
+
+.gallery-item.pair-aligned .gallery-item-img img {
+  width: 100%;
+  height: auto;
+  object-fit: unset;
 }
 
 .gallery-item.same-size {
